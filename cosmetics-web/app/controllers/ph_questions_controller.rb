@@ -1,4 +1,4 @@
-class TriggerQuestionsController < ApplicationController
+class PhQuestionsController < ApplicationController
   include Wicked::Wizard
   include CpnpNotificationTriggerRules
   include TriggerRulesHelper
