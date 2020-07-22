@@ -1,16 +1,21 @@
 FactoryBot.define do
   factory :user do
-    organisation
+    # organisation
     transient do
       first_login { false }
     end
 
     id { SecureRandom.uuid }
     name { "Test User" }
-    email { "test.user@example.com" }
+    sequence(:email) { |n| "test.user#{n}@example.com" }
 
     after :build do |user, options|
       create(:user_attributes, user: user, declaration_accepted: !options.first_login)
+    end
+
+    factory :submit_user, parent: :user, class: "SubmitUser" do
+      password { Faker::Internet.password }
+      has_accepted_declaration { false }
     end
 
     # The following users match specific test accounts on Keycloak and are used in system tests for Keycloak integration

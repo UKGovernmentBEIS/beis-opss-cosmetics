@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
   add_flash_types :confirmation
 
   helper_method :current_user
+  # helper_method :current_submit_user
+  # helper_method :current_search_user
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -69,8 +71,22 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    submit_domain? ? current_submit_user : current_search_user
+    # @current_#{mapping} ||= warden.authenticate(scope: :#{mapping})
+    # submit_domain? ? current_submit_user : current_search_user
+    @current_user ||= submit_domain? ? current_submit_user : current_search_user
   end
+
+  # def current_submit_user
+  #   @current_submit_user ||= warden.authenticate(scope: :submit_user)
+  # end
+
+  # def current_search_user
+  #   @current_search_user ||= warden.authenticate(scope: :search_user)
+  # end
+
+  # def authenticate_submit_user!
+  #   warden.authenticate!(scope: :submit_user)
+  # end
 
   def user_signed_in?
     submit_domain? ? submit_user_signed_in? : search_user_signed_in?

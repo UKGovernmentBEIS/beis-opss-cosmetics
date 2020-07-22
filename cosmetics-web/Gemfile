@@ -64,3 +64,7 @@ group :development, :test do
   gem "sprockets", "~> 3.7.2"
   gem "webmock", "~> 3.8"
 end
+
+group :test do
+  gem "faker"
+end

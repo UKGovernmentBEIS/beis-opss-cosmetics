@@ -1,10 +1,12 @@
 class SubmitUser < User
+  extend ActiveHash::Associations::ActiveRecordExtensions # for relationship with Organisation
+
   # Include default devise modules. Others available are:
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
 
-  belongs_to :organisation
+  # belongs_to :organisation TODO: Re enable it and solve issues with factory bot and ActiveHash
 
   has_many :notification_files, dependent: :destroy
   has_many :responsible_person_users, dependent: :destroy, foreign_key: :user_id # TODO: actually, only submit_users has resp person

@@ -1,6 +1,7 @@
 module Users
   class SessionsController < Devise::SessionsController
     skip_before_action :create_or_join_responsible_person
+    skip_before_action :authenticate_user!
     skip_before_action :authorize_user!
     skip_before_action :set_raven_context
     skip_before_action :has_accepted_declaration
