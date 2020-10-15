@@ -76,6 +76,10 @@ Rails.application.routes.draw do
     resources :responsible_persons do
       collection do
         resources :account, controller: "responsible_persons/account_wizard", only: %i[show update]
+        get 'select', to: "responsible_persons#select"
+      end
+
+      member do
         get 'change', to: "responsible_persons#change"
       end
 

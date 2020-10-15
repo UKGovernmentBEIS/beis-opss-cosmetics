@@ -1,5 +1,6 @@
 class ResponsiblePersons::TeamMembersController < SubmitApplicationController
   before_action :set_responsible_person
+  include ResponsiblePersonConcern
   before_action :set_team_member, only: %i[new create]
   before_action :authorize_responsible_person, only: %i[index new create]
   skip_before_action :authenticate_user!, only: :join

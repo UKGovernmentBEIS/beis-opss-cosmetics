@@ -66,6 +66,7 @@ RSpec.describe "Inviting a colleague", :with_stubbed_antivirus, :with_stubbed_no
   end
 
   scenario "sending an invitation to an user that already belongs to a different team" do
+    pending "Working on multiple RPs"
     team = create(:responsible_person, :with_a_contact_person)
     create(:responsible_person_user, user: invited_user, responsible_person: team)
 
